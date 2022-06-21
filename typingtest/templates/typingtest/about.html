@@ -1,0 +1,86 @@
+{% extends 'typingtest/basic.html' %}
+{% block title %}About Us - FlashText{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <main>
+    <div class="container my-4" style="text-align:center;">
+    <h1>About Us</h1>
+</div>
+
+<hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+
+
+            <h2 class="featurette-heading" style="text-align:center;">FlashText.com <span class="text-muted"></span></h2>
+            <p class="lead"><strong>FlashText is a website where a user can practice and test his/her typing skills. Also, they can create account to store their data and statistics, so that they can get a clear picture about their progress. This website will also give you tips on how to type faster, also we have a Contact us page which makes the website more interactive, in case our users have any query or feedback for us. We consider this website as one of our major project which has basic functions with both Front End
+            and Back End functioning properly. We've uploaded this website as a project on Github, so that anyone can change or add features and functionalities to make this website more user friendly.</strong></p>
+          </div>
+          <div class="col-md-5" style="text-align:center;">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" style="height:310px;"
+              src="{% static 'typingtest/logo.jpg' %}" alt="">
+
+
+
+          </div>
+        </div>
+
+         <hr class="featurette-divider">
+
+        <div class="row featurette" style="margin: 25px 0px;">
+          <div class="col-md-9">
+            <h2 class="featurette-heading" style="text-align:center;">Palash Vishnani 
+            </h2>
+        <p class="lead"><strong style="font-size:17px;"><pre>
+  Hello, this is Palash Vishnani, a full stack developer and freelancer. A kick start to my
+  journey of gaining interest in technical and development field took place when I chose science and
+  mathematics (PCM) as my majors after 10th standard. I was studying in St. Mary’s Convent Senior Secondary
+  School, Dewas (CBSC Board) but soon after 11th standard I dropped out of school and took admission in a
+  non-attending dummy school Himalaya Academy (M.P Board), as I was preparing for a National level entrance
+  exam. Currently I am studying in NMIMS, Mukesh Patel School of Technology Management & Engineering,
+  pursuing B.Tech (Bachelor of Technology) focused on Information Technology. After exploring a whole lot of
+  stuff and gaining insights about several programming and development related domains, I finally found a
+  huge interest in full stack web application development and python. Thus, I usually apply django for the
+  scripting part of a website, also the website you are seeing right now is build using HTML, CSS,
+  JavaScript and Django.
+              
+  Always be curious and grateful for whatever you have in your life and make the most out of it because
+  there are times when most of us are a bit doubtful about the decision that we had made in the past but
+  keep exploring and you will definately find your domain of interest.
+<div style="display: inline-table;">
+  Fine me on: <a href="https://www.linkedin.com/in/palash-vishnani-957478193/" style="text-decoration: none;" target="_blank"><input type="button" value="Linkedin" style="background-color:dodgerblue; border-radius: 5px; box-shadow: 3px 3px 5px;  margin: 0px 10px;"></a>
+
+  <a href="https://www.instagram.com/palash._.22/" style="text-decoration: none;" target="_blank"><input type="button" value="Instagram" style="background-color:#f5376d; border-radius: 5px; box-shadow: 3px 3px 5px; margin: 0px 10px;"></a></div>
+       </pre> </strong></p>
+          </div>
+          <div class="col-md-3 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+              src="{% static 'typingtest/Palash_photo.jpg' %}" alt="">
+
+          </div>
+        </div>
+
+        <div class="container">
+            <footer class="py-3 mt-4">
+              <ul class="nav justify-content-center pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact Us</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+              </ul>
+              <hr>
+                <div class="d-flex justify-content-between py-4 my-1">
+                <p class="text-center text-muted ">© 2022 FlashText. All rights reserved.</p>
+                <ul class="list-unstyled d-flex">
+                  <li class="ms-3"><a class="link-dark" target="_blank" href="https://github.com/Palash-Vishnani/BlogLikho"><img src="{% static 'typingtest/gh_logo3.png' %}" class="bi" width="30" height="30" alt=""></a></li>
+                  <!-- <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li>
+                  <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li> -->
+                </ul>
+              </div>
+            </footer>
+          </div>
+          
+{% endblock %}

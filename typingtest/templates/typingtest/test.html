@@ -1,0 +1,223 @@
+{% extends 'typingtest/basic.html' %}
+{% block title %}TypingTest - FlashText{% endblock %}
+{% block css %}
+    .body{
+        background-color:lavender;
+        <!-- height: 200vh; -->
+        
+    }
+    .container2{
+        display: none;
+    }
+    .container3{
+        display: none;
+    }
+    #submitstats{
+        display: none;
+    }
+    #mytable{
+        display: none;
+    }
+{% endblock %}
+{% block body %}
+{% load static %}
+<div class="body">
+<div class="container">
+    <div style="width: 80%;">
+        <div class="row align-items-start">
+            <div class="col" style="margin: 30px 0px; padding: 15px;">
+                <div style="height: 250px;
+                border: 1px solid black; background-color: white; padding: 15px; font-size: larger; border-radius: 5px;"> 
+              {{statement1}}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="div2" style="width: 70%;"><div class="input-group mb-3">
+        <input type="text" name="writetext" class="form-control" id="textarea" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" style="height: 50px;
+        box-shadow: 5px 5px 5px" placeholder="Start typing here..." autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
+      </div></div>
+      <div style="display: flex; margin: 30px 0px;">
+      <div id="timer" style="border: 2px solid black; padding: 10px 20px; color: white; background: cadetblue; margin-right: 10px; border-radius: 10px;"></div>
+      <a href="/typingtest" style="text-decoration: none;"><div style="border: 2px solid black; margin: 0px 10px; background-color: darkseagreen; border-radius: 10px; padding: 0px 20px;"><img src="{% static 'typingtest/restarticon.png' %}" alt="" style="height: 45px;"><span class="tooltiptext" style="color: white; margin: inherit;">Restart</span></div></a>
+      </div>
+      <div class="container2" style="border: 2px solid; background: beige; border-radius:10px; margin-bottom: 10px;">
+  <div class="row" style="text-align: center; align-items: center; height: 150px;">
+    <div class="col">
+      <div style="font-size: 30px; font-weight: bold;"><span id="wpmcount"></span> WPM</div><br>(words per minute)</br>
+    </div>
+    <div class="col" style="font-size: 30px; font-weight: bold;">
+      Keystrokes<br><span id="keycount" style="font-weight: 600; font-size: 25px;"></span></br>
+    </div>
+    <div class="col" style="font-size: 30px; font-weight: bold;">
+      Accuracy<br><span id="accurate" style="font-weight: 600; font-size: 25px;"></span><span style="font-weight: 600; font-size: 25px;">%</span></br>
+    </div>
+  </div>
+</div>
+<div class="container3" style="border: 2px solid; background: beige; border-radius:10px; margin-top: 10px;">
+    <div class="row" style="text-align: center; align-items: center; height: 100px;">
+      <div class="col" style="font-size: 25px; font-weight: bold;">
+        Correct words<br><span id="rcount" style="font-weight: 500; font-size: 20px;"></span></br>
+      </div>
+      <div class="col" style="font-size: 25px; font-weight: bold;">
+        Wrong words<br><span id="wcount" style="font-weight: 500; font-size: 20px;"></span></br>
+      </div>
+    </div>
+</div>
+{% if user.is_authenticated %}
+<form action="/typingtest" method="POST">{% csrf_token %}
+    <input type="hidden" id="log_username" name="log_username" value="{{user.get_username}}">
+    <input type="hidden" id="wpm" name="wpmcount">
+    <input type="hidden" id="key" name="keycount">
+    <input type="hidden" id="accure" name="accurate">
+    <input type="hidden" id="right" name="rcount">
+    <input type="hidden" id="wrong" name="wcount">
+    <!-- <input type= "hidden" name="next_session" value="{{nextkey}}"> -->
+    <button type="submit" class="btn btn-primary" id="submitstats" style="margin: 10px 0px;">Record Statistics</button>
+</form>
+<div id="mytable">
+    <h3>Comparison with the previous try</h3>
+    <div style="margin: 30px 0px;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">WPM</th>
+            <th scope="col">Keystrokes</th>
+            <th scope="col">Accuracy</th>
+            <th scope="col">Correct words</th>
+            <th scope="col">Wrong words</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Current Try</th>
+            <td id="currentwpm"></td>
+            <td id="currentkey"></td>
+            <td id="currentaccurate"></td>
+            <td id="currentright"></td>
+            <td id="currentwrong"></td>
+          </tr>
+          <tr>
+            <th scope="row">Previous Try</th>
+            <td>{{previous_stats.test_wpm}}</td>
+            <td>{{previous_stats.test_keystrokes}}</td>
+            <td>{{previous_stats.test_accuracy}}</td>
+            <td>{{previous_stats.correct_count}}</td>
+            <td>{{previous_stats.wrong_count}}</td>
+          </tr>
+          <!-- <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+</div>
+{% endif %}
+</div>
+
+<div class="container">
+    <footer class="py-3 mt-4">
+      <ul class="nav justify-content-center pb-3 mb-3">
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact Us</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+      <hr>
+        <div class="d-flex justify-content-between py-4 my-1">
+        <p class="text-center text-muted ">© 2022 FlashText. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" target="_blank" href="https://github.com/Palash-Vishnani/BlogLikho"><img src="{% static 'typingtest/gh_logo3.png' %}" class="bi" width="30" height="30" alt=""></a></li>
+          <!-- <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li> -->
+        </ul>
+      </div>
+    </footer>
+  </div>
+  
+</div>
+
+
+  
+{% endblock %}
+{% block js %}
+
+var seconds = 1000 * 60; //1000 = 1 second in JS
+var textarea = document.getElementById("textarea");
+var timer;
+textarea.addEventListener("keypress", myFunction)
+//When a key is pressed in the text area, update the timer using myFunction
+
+function myFunction() {
+   textarea.removeEventListener("keypress", myFunction);
+   if(seconds == 60000)
+     timer = setInterval(myFunction, 1000)
+    seconds -= 1000;
+    document.getElementById("timer").innerHTML = '0:' + seconds/1000;
+   if (seconds <= 0) {
+       clearInterval(timer);
+    //    alert("You type X WPM");
+       text=document.getElementById("textarea").value
+       text = text.replace(/(^\s*)|(\s*$)/gi,"");
+       text = text.replace(/[ ]{2,}/gi," ");
+	   text = text.replace(/\n /,"\n");
+       console.log(text)
+       var statement = " {{statement1}}"
+       var text_length = text.length;
+       var wordlist = text.split(" ")
+       var right_count=0
+       var wrong_count=0
+       for (i in wordlist){
+           if (statement.includes(" "+wordlist[i]+" ")){
+               console.log(wordlist[i],"Present in statement")
+               right_count=right_count+1
+           }
+           else{
+               wrong_count=wrong_count+1
+           }
+       }
+       console.log(text_length)          
+       var result = ((text_length)/5)
+       var wpm = Math.round(result)
+       console.log("Result is:",wpm)
+       var accuracy = (right_count/(right_count+wrong_count))*100
+       accuracy = accuracy.toFixed(3);
+       $(".container2").show();
+       $(".container3").show();
+       document.getElementById("wpmcount").innerHTML=wpm
+       document.getElementById("keycount").innerHTML=text_length
+       document.getElementById("accurate").innerHTML=accuracy
+       document.getElementById("rcount").innerHTML=right_count
+       document.getElementById("wcount").innerHTML=wrong_count 
+       jQuery(window).load(function() {
+        sessionStorage.setItem('status','loggedIn') 
+      });
+      if (sessionStorage.getItem('status') != null){
+    //redirect to page
+        document.getElementById("wpm").value=wpm
+        document.getElementById("key").value=text_length
+        document.getElementById("accure").value=accuracy
+        document.getElementById("right").value=right_count
+        document.getElementById("wrong").value=wrong_count 
+        document.getElementById("currentwpm").innerHTML=wpm
+        document.getElementById("currentkey").innerHTML=text_length
+        document.getElementById("currentaccurate").innerHTML=accuracy
+        document.getElementById("currentright").innerHTML=right_count
+        document.getElementById("currentwrong").innerHTML=wrong_count
+        
+        }
+      else{
+    //show validation message
+        }
+
+       $("#mytable").show() 
+       $("#submitstats").show()
+   }
+}
+document.getElementById("timer").innerHTML= "0:" + seconds/1000;
+ //If seconds are equal or greater than 0, countdown until 1 minute has passed
+//Else, clear the timer and alert user of how many words they type per minute
+
+{% endblock %}

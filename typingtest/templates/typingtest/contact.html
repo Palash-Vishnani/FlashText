@@ -1,0 +1,54 @@
+{% extends 'typingtest/basic.html' %}
+{% block title %}Contact Us - FlashText{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+  <div class="container my-4" style="text-align:center;">
+
+    <h1>Contact Us</h1>
+
+
+  </div>
+  <form method="POST" action="contact">{% csrf_token %}
+  <div class="mb-4">
+    <label for="name" class="form-label"><b>Enter Full Name</b></label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
+  </div>
+  <div class="mb-4">
+    <label for="email" class="form-label"><b>Enter Email</b></label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="johndoe@gmail.com">
+  </div>
+  <div class="mb-4">
+    <label for="phone" class="form-label"><b>Enter Phone Number</b></label>
+    <input type="number" class="form-control" id="phone" name="phone" placeholder="Phone Number">
+  </div>
+  <div class="form-floating mb-4">
+    <textarea class="form-control" id="feedback" name="feedback" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+    <label for="floatingTextarea2">Comments/Feedback/Query</label>
+  </div>
+<button type="submit" class="btn btn-primary mb-4">Submit</button>
+</form>
+</div>
+
+<div class="container">
+    <footer class="py-3 mt-4">
+      <ul class="nav justify-content-center pb-3 mb-3">
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact Us</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+      <hr>
+        <div class="d-flex justify-content-between py-4 my-1">
+        <p class="text-center text-muted ">© 2022 FlashText. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" target="_blank" href="https://github.com/Palash-Vishnani/BlogLikho"><img src="{% static 'typingtest/gh_logo3.png' %}" class="bi" width="30" height="30" alt=""></a></li>
+          <!-- <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li> -->
+        </ul>
+      </div>
+    </footer>
+  </div>
+  
+{% endblock %}
