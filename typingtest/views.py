@@ -51,7 +51,7 @@ def test(request):
             wcount=request.POST.get("wcount")
             # next_session=request.POST.get("next_session")
             if "stats" not in request.session:
-                if len(Userstatistic.objects.all()) == 0:
+                if len(Userstatistic.objects.filter(login_username=loginusername).all()) == 0:
                     save_stats=Userstatistic(login_username=loginusername,test_wpm=wpmcount,test_keystrokes=keycount,test_accuracy=accurate,correct_count=rcount,wrong_count=wcount)
                     save_stats.save()
                     request.session["stats"] = list(Userstatistic.objects.filter(login_username=loginusername).values('test_id','login_username','test_wpm','test_keystrokes','test_accuracy','correct_count','wrong_count'))

@@ -129,7 +129,7 @@
         <div class="d-flex justify-content-between py-4 my-1">
         <p class="text-center text-muted ">© 2022 FlashText. All rights reserved.</p>
         <ul class="list-unstyled d-flex">
-          <li class="ms-3"><a class="link-dark" target="_blank" href="https://github.com/Palash-Vishnani/BlogLikho"><img src="{% static 'typingtest/gh_logo3.png' %}" class="bi" width="30" height="30" alt=""></a></li>
+          <li class="ms-3"><a class="link-dark" target="_blank" href="https://github.com/Palash-Vishnani/FlashText"><img src="{% static 'typingtest/gh_logo3.png' %}" class="bi" width="30" height="30" alt=""></a></li>
           <!-- <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li>
           <li class="ms-3"><a class="link-dark" target="_blank" href="#"><img src="{% static '' %}" class="bi" width="24" height="24" alt=""></a></li> -->
         </ul>
@@ -191,11 +191,8 @@ function myFunction() {
        document.getElementById("accurate").innerHTML=accuracy
        document.getElementById("rcount").innerHTML=right_count
        document.getElementById("wcount").innerHTML=wrong_count 
-       jQuery(window).load(function() {
-        sessionStorage.setItem('status','loggedIn') 
-      });
-      if (sessionStorage.getItem('status') != null){
-    //redirect to page
+       
+        
         document.getElementById("wpm").value=wpm
         document.getElementById("key").value=text_length
         document.getElementById("accure").value=accuracy
@@ -206,14 +203,9 @@ function myFunction() {
         document.getElementById("currentaccurate").innerHTML=accuracy
         document.getElementById("currentright").innerHTML=right_count
         document.getElementById("currentwrong").innerHTML=wrong_count
-        
-        }
-      else{
-    //show validation message
-        }
-
-       $("#mytable").show() 
-       $("#submitstats").show()
+        $("#mytable").show() 
+        $("#submitstats").show()
+    //redirect to page
    }
 }
 document.getElementById("timer").innerHTML= "0:" + seconds/1000;
